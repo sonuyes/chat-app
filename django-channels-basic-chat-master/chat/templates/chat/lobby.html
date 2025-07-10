@@ -141,9 +141,10 @@
 </form>
 
 <script>
-   const chatSocket = new WebSocket(
-  'ws://' + window.location.host + '/ws/socket-server/'
+  const chatSocket = new WebSocket(
+  (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.host + '/ws/socket-server/'
 );
+
 
 
     chatSocket.onmessage = function(e) {

@@ -124,6 +124,68 @@
             object-fit: cover;
             border-radius: 10px;
         }
+        #form {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 100;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.input-group input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    min-width: 0;
+}
+
+.input-group button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #25d366;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.icon-label {
+    font-size: 22px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.preview-wrapper {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+}
+
+#preview {
+    max-height: 60px;
+    max-width: 60px;
+    border-radius: 8px;
+    display: block;
+}
+
     </style>
 </head>
 <body>
@@ -133,12 +195,17 @@
 <div id="messages"></div>
 
 <form id="form">
-    <input type="text" name="message" placeholder="Type a message..." autocomplete="off">
-    <label for="stickerInput" style="cursor: pointer; font-size: 24px;">📎</label>
-    <input type="file" id="stickerInput" accept="image/*">
-    <img id="preview" src="" style="display: none;">
-    <button type="submit">Send</button>
+    <div class="input-group">
+        <input type="text" name="message" placeholder="Type a message..." autocomplete="off">
+        <label for="stickerInput" class="icon-label">📎</label>
+        <input type="file" id="stickerInput" accept="image/*">
+        <button type="submit">Send</button>
+    </div>
+    <div class="preview-wrapper" id="preview-wrapper">
+        <img id="preview" src="" style="display: none;">
+    </div>
 </form>
+
 
 <script>
   const chatSocket = new WebSocket(

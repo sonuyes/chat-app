@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: django-chat-app
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: daphne mywebsite.asgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: mywebsite.settings
+      - key: PYTHON_VERSION
+        value: 3.10
+      - key: DEBUG
+        value: "False"
